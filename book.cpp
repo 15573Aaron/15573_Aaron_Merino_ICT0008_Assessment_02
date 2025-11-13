@@ -2,40 +2,37 @@
 #include <iostream>
 #include <iomanip>
 
-// Implementación del método para asignar valores
 void Book::setBookDetails(std::string title, std::string author, std::string isbn, Date date) {
     Title = title;
     Author = author;
     Isbn = isbn;
     DateAdd = date;
-    Availability = true; // El libro comienza disponible
+    Availability = true; 
 }
 
-// Implementación del método para mostrar detalles
 void Book::displayBookDetails() const {
-    std::cout << "\n--- DETALLES DE " << Title << " ---\n";
-    std::cout << "Autor: " << Author << "\n";
+    std::cout << "\n--- DETAILS OF " << Title << " ---\n";
+    std::cout << "Author: " << Author << "\n";
     std::cout << "ISBN: " << Isbn << "\n";
-    std::cout << "Adquisición: " << DateAdd.day << "/" << DateAdd.month << "/" << DateAdd.year << "\n";
-    std::cout << "Estado: " << (Availability ? "DISPONIBLE" : "PRESTADO") << "\n";
+    std::cout << "Acquisition: " << DateAdd.day << "/" << DateAdd.month << "/" << DateAdd.year << "\n";
+    std::cout << "Status: " << (Availability ? "AVAILABLE" : "BORROWED") << "\n";
     std::cout << "--------------------------------\n";
 }
 
-// Inicializamos el resto de los métodos por ahora (Lógica pendiente)
 void Book::borrowBook() { 
     if (Availability) {
         Availability = false;
-        std::cout << "Libro prestado exitosamente.\n";
+        std::cout << "Book successfully borrowed.\n";
     } else {
-        std::cout << "ERROR: El libro ya está prestado.\n";
+        std::cout << "ERROR: The book is already borrowed.\n";
     }
 }
 void Book::returnBook() { 
     if (!Availability) {
         Availability = true;
-        std::cout << "Libro devuelto exitosamente. Ahora está DISPONIBLE.\n";
+        std::cout << "Book successfully returned. It is now AVAILABLE.\n";
     } else {
-        std::cout << "ERROR: El libro ya estaba disponible.\n";
+        std::cout << "ERROR: The book was already available.\n";
     }
 }
-void Book::sortBookData(Book books[], int size) { /* Lógica de ordenamiento pendiente */ }
+void Book::sortBookData(Book books[], int size) { }
