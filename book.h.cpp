@@ -23,10 +23,8 @@ public:
     void borrowBook();
     void returnBook();
     
-    // Método para ordenar
     static void sortBookData(Book books[], int size); 
     
-    // Método auxiliar (Getter)
     std::string getIsbn() const { return Isbn; } 
 };
 

@@ -22,11 +22,11 @@ int main() {
     const int NUM_BOOKS = 5;
     Book library[NUM_BOOKS];
 
-    library[0].setBookDetails("C++ Primer", "Stanley B. Lippman", "9780321714114", {10, 1, 2024});
-    library[1].setBookDetails("The C++ Programming Language", "Bjarne Stroustrup", "9780321563842", {15, 2, 2024});
-    library[2].setBookDetails("Effective Modern C++", "Scott Meyers", "9781491903995", {1, 3, 2024});
-    library[3].setBookDetails("Clean Code", "Robert C. Martin", "9780132350884", {20, 4, 2024});
-    library[4].setBookDetails("Design Patterns", "Erich Gamma et al.", "9780201633610", {5, 5, 2024});
+    library[0].setBookDetails("Cien años de soledad", "Gabriel García Márquez", "9788497592208", {10, 1, 1967});
+    library[1].setBookDetails("La sombra del viento", "Carlos Ruiz Zafón", "9788408092942", {15, 2, 2001});
+    library[2].setBookDetails("El tiempo entre costuras", "María Dueñas", "9788499984922", {1, 3, 2009});
+    library[3].setBookDetails("Patria", "Fernando Aramburu", "9788483103211", {20, 4, 2016});
+    library[4].setBookDetails("Los renglones torcidos de Dios", "Torcuato Luca de Tena", "9788408000497", {5, 5, 1979});
 
     string userIsbn;
     int choice;
