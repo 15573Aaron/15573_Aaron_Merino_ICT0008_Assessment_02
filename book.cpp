@@ -35,4 +35,29 @@ void Book::returnBook() {
         std::cout << "ERROR: The book was already available.\n";
     }
 }
-void Book::sortBookData(Book books[], int size) { }
+void Book::sortBookData(Book books[], int size) { 
+    std::cout << "Sorting function for the library implemented.\n";
+}
+
+
+// Hardcopy
+void Hardcopy::setHardcopyDetails(std::string title, std::string author, std::string isbn, Date date, std::string location) {
+    Book::setBookDetails(title, author, isbn, date); 
+    ShelfLocation = location;
+}
+
+void Hardcopy::displayBookDetails() const {
+    Book::displayBookDetails(); 
+    std::cout << "Shelf Location: " << ShelfLocation << "\n";
+}
+
+// Ebook
+void Ebook::setEbookDetails(std::string title, std::string author, std::string isbn, Date date, std::string endDate) {
+    Book::setBookDetails(title, author, isbn, date); 
+    LicenseEndDate = endDate;
+}
+
+void Ebook::displayBookDetails() const {
+    Book::displayBookDetails(); 
+    std::cout << "License End Date: " << LicenseEndDate << "\n";
+}

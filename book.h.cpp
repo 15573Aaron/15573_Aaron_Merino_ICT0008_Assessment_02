@@ -19,13 +19,32 @@ private:
 
 public:
     void setBookDetails(std::string title, std::string author, std::string isbn, Date date);
-    void displayBookDetails() const;
+    virtual void displayBookDetails() const;
     void borrowBook();
     void returnBook();
     
     static void sortBookData(Book books[], int size); 
     
-    std::string getIsbn() const { return Isbn; } 
+    std::string getIsbn() const { return Isbn; }
+    virtual ~Book() {}
+};
+
+// Hardcopy
+class Hardcopy : public Book {
+private:
+    std::string ShelfLocation;
+public:
+    void setHardcopyDetails(std::string title, std::string author, std::string isbn, Date date, std::string location);
+    void displayBookDetails() const override; 
+};
+
+// Ebook
+class Ebook : public Book {
+private:
+    std::string LicenseEndDate;
+public:
+    void setEbookDetails(std::string title, std::string author, std::string isbn, Date date, std::string endDate);
+    void displayBookDetails() const override; 
 };
 
 #endif // BOOK_H
