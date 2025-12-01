@@ -25,23 +25,23 @@ int main() {
 
     // Hardcopy
     library[0] = new Hardcopy;
-    ((Hardcopy*)library[0])->setHardcopyDetails("Cien años de soledad", "Gabriel García Márquez", "9788497592208", {10, 1, 1967}, "Chapter 1");
+    ((Hardcopy*)library[0])->setHardcopyDetails("Cien años de soledad", "Gabriel García Márquez", "9788497592208", {10, 1, 1967}, "Shelf Location: Shelving 3");
 
     // Ebook
     library[1] = new Ebook;
-    ((Ebook*)library[1])->setEbookDetails("La sombra del viento", "Carlos Ruiz Zafón", "9788408092942", {15, 2, 2001}, "15/2/2001");
+    ((Ebook*)library[1])->setEbookDetails("La sombra del viento", "Carlos Ruiz Zafón", "9788408092942", {15, 2, 2001}, "15/2/2026");
 
     // Hardcopy
     library[2] = new Hardcopy;
-    ((Hardcopy*)library[2])->setHardcopyDetails("El tiempo entre costuras", "María Dueñas", "9788499984922", {1, 3, 2009}, "Chapter 2");
+    ((Hardcopy*)library[2])->setHardcopyDetails("El tiempo entre costuras", "María Dueñas", "9788499984922", {1, 3, 2009}, "Shelf Location: Shelving 6");
     
     // Hardcopy
     library[3] = new Hardcopy;
-    ((Hardcopy*)library[3])->setHardcopyDetails("Patria", "Fernando Aramburu", "9788483103211", {20, 4, 2016}, "Chapter 3");
+    ((Hardcopy*)library[3])->setHardcopyDetails("Patria", "Fernando Aramburu", "9788483103211", {20, 4, 2016}, "Shelf Location: Shelving 2");
 
     // Ebook
     library[4] = new Ebook;
-    ((Ebook*)library[4])->setEbookDetails("Los renglones torcidos de Dios", "Torcuato Luca de Tena", "9788408000497", {5, 5, 1979}, "5/5/1979");
+    ((Ebook*)library[4])->setEbookDetails("Los renglones torcidos de Dios", "Torcuato Luca de Tena", "9788408000497", {5, 5, 1979}, "5/5/2027");
 
     int choice;
     string userIsbn;
