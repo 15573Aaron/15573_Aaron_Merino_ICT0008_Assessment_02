@@ -1,15 +1,20 @@
+// Sorting.h
+
 #ifndef SORTING_H
 #define SORTING_H
 
 #include <vector>
 #include <string>
+#include <algorithm> // for std::swap
 #include "book.h" 
 
+// Enumeration for sort field selection
 enum SortField {
     TITLE,
     ISBN
 };
 
+// Quick Sort Partition function
 int partition(std::vector<Book*>& arr, int low, int high, SortField field) {
     Book* pivot = arr[high];
     int i = (low - 1);
@@ -17,6 +22,7 @@ int partition(std::vector<Book*>& arr, int low, int high, SortField field) {
     for (int j = low; j <= high - 1; j++) {
         bool condition = false;
         
+        // Comparison logic based on selected field
         if (field == TITLE) {
             condition = arr[j]->getTitle() < pivot->getTitle();
         } else if (field == ISBN) {
@@ -32,6 +38,7 @@ int partition(std::vector<Book*>& arr, int low, int high, SortField field) {
     return (i + 1);
 }
 
+// Quick Sort Recursive function
 void QuickSort(std::vector<Book*>& arr, int low, int high, SortField field = TITLE) {
     if (low < high) {
         int pi = partition(arr, low, high, field);
