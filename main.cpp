@@ -1,112 +1,54 @@
-#include "book.h.cpp"
-#include <iostream>
-#include <limits> 
+#include "book.h"
+#include "sorting.h"
+#include <vector>
+#include <algorithm> 
 #include <string>
 
-using namespace std;
-
-int findBook(Book* books[], int size, const string& isbn) {
-    for (int i = 0; i < size; ++i) {
-        if (books[i]->getIsbn() == isbn) {
-            return i; 
-        }
+void printLibrary(const std::vector<Book*>& library, const std::string& title) {
+    std::cout << "\n================================================\n";
+    std::cout << title << std::endl;
+    std::cout << "================================================\n";
+    
+    for (const auto& book : library) {
+        book->displayBookDetails(); 
+        std::cout << "------------------------------------------\n";
     }
-    return -1; 
-}
-
-void clearInputBuffer() {
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
 int main() {
-    const int NUM_BOOKS = 5;
-    Book* library[NUM_BOOKS];
-
-    // Hardcopy
-    library[0] = new Hardcopy;
-    ((Hardcopy*)library[0])->setHardcopyDetails("Cien años de soledad", "Gabriel García Márquez", "9788497592208", {10, 1, 1967}, "Shelf Location: Shelving 3");
-
-    // Ebook
-    library[1] = new Ebook;
-    ((Ebook*)library[1])->setEbookDetails("La sombra del viento", "Carlos Ruiz Zafón", "9788408092942", {15, 2, 2001}, "15/2/2026");
-
-    // Hardcopy
-    library[2] = new Hardcopy;
-    ((Hardcopy*)library[2])->setHardcopyDetails("El tiempo entre costuras", "María Dueñas", "9788499984922", {1, 3, 2009}, "Shelf Location: Shelving 6");
     
-    // Hardcopy
-    library[3] = new Hardcopy;
-    ((Hardcopy*)library[3])->setHardcopyDetails("Patria", "Fernando Aramburu", "9788483103211", {20, 4, 2016}, "Shelf Location: Shelving 2");
-
-    // Ebook
-    library[4] = new Ebook;
-    ((Ebook*)library[4])->setEbookDetails("Los renglones torcidos de Dios", "Torcuato Luca de Tena", "9788408000497", {5, 5, 1979}, "5/5/2027");
-
-    int choice;
-    string userIsbn;
-    int index;
-
-    while (true) {
-        cout << "\n--- LIBRARY SYSTEM MENU ---\\n";
-        cout << "1. List all books and their details\\n";
-        cout << "2. Borrow a book by ISBN\\n";
-        cout << "3. Return a book by ISBN\\n";
-        cout << "0. Exit program\\n";
-        cout << "Select an option: ";
-        
-        cin >> choice;
-
-        if (cin.fail()) {
-            cout << "Invalid input. Try again.\\n";
-            clearInputBuffer();
-            continue;
-        }
-
-        if (choice == 0) {
-            cout << "Program terminated. Goodbye!\\n";
-            break; 
-        }
-
-        if (choice == 1) {
-            cout << "\n--- COMPLETE LISTING ---\\n";
-            for (int i = 0; i < NUM_BOOKS; ++i) {
-                // Polimorfismo: llama al displayBookDetails() correcto (Book, Hardcopy o Ebook)
-                library[i]->displayBookDetails();
-            }
-            continue;
-        }
-
-        if (choice == 2 || choice == 3) {
-            cout << "Enter the book ISBN (or '0' to exit): ";
-            cin >> userIsbn;
-            
-            if (userIsbn == "0") {
-                 cout << "Program terminated. Goodbye!\\n";
-                 choice = 0;
-                 break;
-            }
-            
-            index = findBook(library, NUM_BOOKS, userIsbn);
-            
-            if (index != -1) {
-                if (choice == 2) {
-                    library[index]->borrowBook(); 
-                } else {
-                    library[index]->returnBook(); 
-                }
-            } else {
-                cout << "ERROR: Book with ISBN " << userIsbn << " not found in the library.\\n";
-            }
-        } else {
-            cout << "Invalid menu option. Try again.\\n";
-            clearInputBuffer();
-        }
-    }
+    std::cout << "Inicializando Sistema de Biblioteca...\n";
     
-    for (int i = 0; i < NUM_BOOKS; ++i) {
-        delete library[i];
-    }
+    std::vector<Book*> library;
 
+    library.push_back(new Hardcopy("Don Quijote", "Miguel de Cervantes", "978-8424911475", "A-301"));
+    library.push_back(new Ebook("Clean Code", "Robert C. Martin", "978-0132350884", "2026-12-31"));
+    library.push_back(new Hardcopy("The Great Gatsby", "F. Scott Fitzgerald", "978-0743273565", "B-105"));
+    library.push_back(new Ebook("C++ Primer", "Stanley B. Lippman", "978-0321714114", "2027-01-01"));
+
+    printLibrary(library, "Inventario Inicial (Desordenado)");
+
+    std::cout << "\n*** Iniciando Ordenamiento por TITULO ***\n";
+    QuickSort(library, 0, library.size() - 1, TITLE);
+    printLibrary(library, "Inventario Ordenado por TITULO");
+
+    std::cout << "\n*** Iniciando Ordenamiento por ISBN ***\n";
+    QuickSort(library, 0, library.size() - 1, ISBN);
+    printLibrary(library, "Inventario Ordenado por ISBN");
+    
+    // Limpieza de Memoria (Obligatorio en C++ con new)
+    for (Book* book : library) {
+        delete book; 
+    }
+    library.clear();
+    
+    // Documentacion Técnica (Estilo Oscar - Rigor)
+    std::cout << "\n\n*** Documentacion Tecnica del Algoritmo ***\n";
+    std::cout << "Algoritmo Implementado: Quick Sort\n";
+    std::cout << " - Complejidad Promedio: O(n log n)\n";
+    std::cout << " - Complejidad Peor Caso: O(n^2)\n";
+    std::cout << " - Memoria Auxiliar: O(log n)\n";
+    std::cout << " - Estabilidad: No Estable\n";
+    
     return 0;
 }
